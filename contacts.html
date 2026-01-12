@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardians - SafeGuard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-purple sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-user-shield me-2"></i> My Guardians
+            </a>
+            <span class="badge bg-white text-purple rounded-pill" id="contactCount">0/5</span>
+        </div>
+    </nav>
+
+    <div class="container py-4 mb-5">
+
+        <div class="alert alert-light border-start border-4 border-purple shadow-sm small text-muted">
+            <i class="fas fa-info-circle me-1 text-purple"></i>
+            These contacts will receive your location and audio recordings when SOS is triggered.
+        </div>
+
+        <button class="btn btn-outline-purple w-100 py-3 mb-4 border-dashed rounded-3 fw-bold" data-bs-toggle="modal"
+            data-bs-target="#addContactModal">
+            <i class="fas fa-plus-circle me-2"></i> Add New Guardian
+        </button>
+
+        <div id="contactsList" class="row g-3">
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="addContactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-purple">New Guardian</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addContactForm">
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Full Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control border-start-0" id="contactName" required
+                                    placeholder="e.g. Mom">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-phone"></i></span>
+                                <input type="tel" class="form-control border-start-0" id="contactPhone" required
+                                    placeholder="017...">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Relationship</label>
+                            <select class="form-select" id="contactRelation">
+                                <option value="Family">Family</option>
+                                <option value="Friend">Friend</option>
+                                <option value="Partner">Partner</option>
+                                <option value="Official">Police/Official</option>
+                            </select>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-purple text-white py-2 rounded-pill shadow-sm"
+                                style="background-color: var(--primary-purple);">Save Contact</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-bottom bg-white shadow-lg rounded-top-4 border-top">
+        <div class="d-flex justify-content-around py-3">
+            <a href="index.html" class="nav-item text-muted">
+                <i class="fas fa-home fa-lg"></i>
+            </a>
+            <a href="map.html" class="nav-item text-muted">
+                <i class="fas fa-map-marked-alt fa-lg"></i>
+            </a>
+            <a href="contacts.html" class="nav-item text-purple active">
+                <i class="fas fa-user-group fa-lg"></i>
+            </a>
+            <a href="profile.html" class="nav-item text-muted">
+                <i class="fas fa-user fa-lg"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/contacts.js"></script>
+</body>
+
+</html>

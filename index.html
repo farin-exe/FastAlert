@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAlert - Women's Security</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sos-animations.css">
+
+    <style>
+        /* PC-Specific Tweaks */
+        @media (min-width: 768px) {
+            .app-container {
+                max-width: 480px;
+                /* Keeps the "App" shape on Desktop */
+                margin: 40px auto;
+                background: white;
+                border-radius: 20px;
+                padding: 40px;
+                box-shadow: 0 1rem 3rem rgba(0, 0, 0, .1);
+                min-height: 80vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            body {
+                background-color: #e9ecef;
+                /* Darker bg for contrast on PC */
+            }
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 767px) {
+            .app-container {
+                padding-bottom: 90px;
+                /* Space for bottom nav */
+            }
+        }
+
+        /* Navigation Link Styling for Desktop */
+        .nav-link-desktop {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            margin: 0 15px;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-link-desktop:hover,
+        .nav-link-desktop.active {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-purple sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-shield-halved me-2"></i>FastAlert
+            </a>
+
+            <div class="d-flex align-items-center text-white d-md-none">
+                <span class="me-3 small"><i class="fas fa-battery-three-quarters"></i> 85%</span>
+                <button class="btn btn-sm btn-outline-light rounded-circle" id="settingsBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <div class="navbar-nav d-none d-md-flex">
+                    <a href="index.html" class="nav-link-desktop active">Dashboard</a>
+                    <a href="map.html" class="nav-link-desktop">Live Map</a>
+                    <a href="contacts.html" class="nav-link-desktop">Guardians</a>
+                    <a href="profile.html" class="nav-link-desktop">Profile</a>
+                </div>
+            </div>
+
+            <div class="d-none d-md-flex align-items-center text-white">
+                <span class="me-3"><i class="fas fa-battery-three-quarters"></i> 85%</span>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-light rounded-circle dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="profile.html">Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="app-container d-flex flex-column justify-content-center align-items-center">
+
+            <div class="text-center mb-5 fade-in">
+                <h5 class="text-muted">Current Status</h5>
+                <span class="badge bg-success px-4 py-2 rounded-pill shadow-sm" style="font-size: 0.9rem;">
+                    <i class="fas fa-check-circle me-1"></i> System Active
+                </span>
+            </div>
+
+            <div class="sos-container position-relative mb-4">
+                <div class="sos-ring"></div>
+                <div class="sos-ring delay"></div>
+                <button id="sosBtn" class="sos-button shadow-lg" onmousedown="startSOS()" onmouseup="cancelSOS()">
+                    SOS
+                </button>
+            </div>
+            <p class="text-center text-muted mt-2 mb-5 small">
+                Press & Hold for 3s or Shake Phone
+            </p>
+
+            <div class="row w-100 g-3">
+                <div class="col-6">
+                    <button
+                        class="btn btn-white w-100 py-3 shadow-sm rounded-4 text-purple fw-bold border-0 h-100 d-flex flex-column align-items-center justify-content-center">
+                        <i class="fas fa-user-check fa-2x mb-2"></i>
+                        I'm Safe
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button
+                        class="btn btn-white w-100 py-3 shadow-sm rounded-4 text-danger fw-bold border-0 h-100 d-flex flex-column align-items-center justify-content-center"
+                        onclick="toggleSiren()">
+                        <i class="fas fa-bullhorn fa-2x mb-2"></i>
+                        Siren
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="fixed-bottom bg-white shadow-lg rounded-top-4 border-top d-md-none">
+        <div class="d-flex justify-content-around py-3">
+            <a href="index.html" class="nav-item text-purple active">
+                <i class="fas fa-home fa-lg"></i>
+            </a>
+            <a href="map.html" class="nav-item text-muted">
+                <i class="fas fa-map-marked-alt fa-lg"></i>
+            </a>
+            <a href="contacts.html" class="nav-item text-muted">
+                <i class="fas fa-user-group fa-lg"></i>
+            </a>
+            <a href="profile.html" class="nav-item text-muted">
+                <i class="fas fa-user fa-lg"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/sos.js"></script>
+</body>
+
+</html>
